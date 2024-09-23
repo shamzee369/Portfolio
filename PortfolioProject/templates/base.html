@@ -1,0 +1,84 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'assets/css/certification.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/wrkexp.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/login.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/register.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/project.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'userprofile:profile' %}">Profile</a>
+                </li>
+                
+                <li class="nav-item">
+                  
+                    <a class="nav-link" href="{% url 'portfolio:proshow'  %}">Your Projects</a>
+               
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portfolio:allproshow' %}">All Portfoilio Projects</a>
+                </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'userprofile:logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'portfolio:portfolio' %}">Add Project</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'userprofile:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'userprofile:create' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'userprofile:profile' %}">Profile</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
+
+    <!-- Main content -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Portfolio App</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

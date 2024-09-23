@@ -1,0 +1,91 @@
+/* Global Styles */
+body {
+    background-image:  url('/static/assets/images/port.jpg');  /* Add your background image here */
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    height: 200px;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+.header {
+    height: 80px; /* Adjust header height */
+    padding: 10px 30px; /* Adjust padding for spacing */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex;
+    justify-content: space-between; /* Align links to right */
+    align-items: center;
+    position: relative;
+    z-index: 1000; /* Ensure the header is above the background */
+}
+
+.header .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff; /* Change to your preferred color */
+    text-decoration: none;
+}
+
+.header a {
+    color: #555; /* Set link colors */
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.header a:hover {
+    color: #000; /* Hover effect for links */
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 100px auto; /* Add space between header and content */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for content box */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        padding: 10px 15px;
+    }
+
+    .header .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-collapse {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .container {
+        margin: 50px auto; /* Adjust margin for smaller screens */
+        padding: 15px;
+    }
+}

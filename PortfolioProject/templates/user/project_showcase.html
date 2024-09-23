@@ -1,0 +1,77 @@
+<!-- templates/user/project_showcase.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ profile_user.username }}'s Projects
+{% endblock %}
+
+{% block head %}
+    <link href="{% static 'assets/css/project_showcase.css' %}" rel="stylesheet" type="text/css">
+    <!-- Add any additional CSS if necessary -->
+{% endblock %}
+
+{% block content %}
+    <div class="project-showcase-container">
+        <!-- Display User Information -->
+        <div class="user-info">
+            <h2>{{ profile_user.username }}'s Projects</h2>
+            {% if profile_user.userprofile.profile_image %}
+                <img src="{{ profile_user.userprofile.profile_image.url }}" alt="{{ profile_user.username }}'s Profile Picture" class="profile-picture">
+            {% else %}
+                <img src="{% static 'assets/images/default_profile.png' %}" alt="Default Profile Picture" class="profile-picture">
+            {% endif %}
+            <p>{{ profile_user.userprofile.bio }}</p>
+        </div>
+
+        <!-- Featured Projects -->
+        {% if featured_projects %}
+            <section class="featured-projects">
+                <h3>Featured Projects</h3>
+                <div class="projects-grid">
+                    {% for project in featured_projects %}
+                        <div class="project-card">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                            <h4>{{ project.title }}</h4>
+                            <p>{{ project.description }}</p>
+                            <!-- Add more project details as needed -->
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        <!-- All Projects -->
+        <section class="all-projects">
+            <h3>All Projects</h3>
+            <div class="projects-grid">
+                {% for project in page_obj %}
+                    <div class="project-card">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                        <h4>{{ project.title }}</h4>
+                        <p>{{ project.description }}</p>
+                        <!-- Add more project details as needed -->
+                    </div>
+                {% empty %}
+                    <p>No projects available.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+             <!-- Pagination -->
+             {% if is_paginated %}
+             <div class="pagination">
+                 {% if page_obj.has_previous %}
+                     <a href="?page={{ page_obj.previous_page_number }}" class="pagination-button">Previous</a>
+                 {% endif %}
+ 
+                 <span class="pagination-info">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+ 
+                 {% if page_obj.has_next %}
+                     <a href="?page={{ page_obj.next_page_number }}" class="pagination-button">Next</a>
+                 {% endif %}
+             </div>
+         {% endif %}
+     </div>
+ {% endblock %}

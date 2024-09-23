@@ -1,0 +1,38 @@
+/* static/assets/css/addproject.css */
+
+/* Customize the card header */
+.card-header {
+    background-color: #28a745; /* Green color */
+    color: rgb(235, 219, 219);
+    text-align: center;
+}
+
+/* Style the form labels */
+.form-label {
+    font-weight: bold;
+    color: #343a40; /* Dark gray */
+}
+
+/* Style the submit button */
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Add custom spacing */
+.mb-3 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Customize the image preview */
+#imagePreview {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}

@@ -1,0 +1,247 @@
+/* firstpage.css */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap');
+
+/* Reset Box Sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Remove conflicting body styles
+body {
+    /* Removed styles to prevent conflicts with base.html */
+    /* base.html already defines the body styles */
+    /* If specific styles are needed, consider using a unique class */
+
+/* Unique Container for First Page */
+.firstpage-container {
+    position: relative; 
+    width: 768px; 
+    max-width: 100%; 
+    min-height: 800px; /* Adjusted to fit viewport height */
+    background: #20cbe2; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    box-shadow: 
+        0 14px 28px rgba(0,0,0,0.25),
+        0 10px 10px rgba(0,0,0,0.22);
+    margin: 50px auto; /* Center the container with top margin */
+}
+
+/* Sign-Up and Sign-In Forms */
+.sign-up, .sign-in { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    height: 100%; 
+    width: 50%; /* Ensure width is consistent */
+    transition: all 0.65s ease-in-out;
+}
+
+.sign-up { 
+    opacity: 0; 
+    z-index: 1; 
+} 
+
+.sign-in { 
+    z-index: 2; 
+}
+
+/* Form Styling */
+form { 
+    background: #fff; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column; 
+    padding: 50px; 
+    height: 100%; 
+    text-align: center;
+} 
+
+/* Headings */
+h1 {
+    font-weight: bold; 
+    margin: 0;
+}
+
+/* Paragraphs */
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 15px 0 20px;
+}
+
+/* Input and Textarea Styling */
+input, textarea {
+    background: #eee;
+    padding: 12px 15px; 
+    margin: 8px 15px; 
+    width: calc(100% - 30px); /* Adjusted width for padding */
+    border-radius: 5px; 
+    border: none; 
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Links */
+a {
+    color: #333; 
+    font-size: 14px; 
+    text-decoration: none; 
+    margin: 15px 0;
+}
+
+/* Buttons */
+button {
+    color: #fff; 
+    background: #4ce0fa; 
+    font-size: 12px; 
+    font-weight: bold; 
+    padding: 12px 55px; 
+    margin: 20px 0; /* Reduced horizontal margin */
+    border-radius: 20px; 
+    border: 1px solid #ff4b2b; 
+    outline: none; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    transition: transform 80ms ease-in;
+}
+
+button:active {
+    transform: scale(0.90);
+}
+
+#signIn, #signUp {
+    background-color: transparent; 
+    border: 2px solid #fff;
+}
+
+/* Active Panel Styles */
+.firstpage-container.right-panel-active .sign-in { 
+    transform: translateX(100%);
+}
+
+.firstpage-container.right-panel-active .sign-up {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+
+/* Overlay Container */
+.overlay-container { 
+    position: absolute; 
+    top: 0; 
+    left: 50%; 
+    width: 50%; 
+    height: 100%; 
+    overflow: hidden; 
+    transition: transform 0.6s ease-in-out; 
+    z-index: 100;
+}
+
+.firstpage-container.right-panel-active .overlay-container {
+    transform: translateX(-100%); 
+}
+
+.overlay {
+    position: relative; 
+    color: #fff;
+    left: -100%; 
+    height: 100%; 
+    width: 200%; 
+    background: linear-gradient(to right, #6ff34e, #ff228c);
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.firstpage-container.right-panel-active .overlay {
+    transform: translateX(50%);
+} 
+
+/* Overlay Panels */
+.overlay-left, .overlay-right {
+    position: absolute; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column; 
+    padding: 0 40px; 
+    text-align: center; 
+    top: 0; 
+    height: 100%; 
+    width: 50%; 
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%); 
+} 
+
+.overlay-right { 
+    right: 0; 
+    transform: translateX(0); 
+} 
+
+.firstpage-container.right-panel-active .overlay-left {
+    transform: translateX(0); 
+} 
+
+.firstpage-container.right-panel-active .overlay-right { 
+    transform: translateX(20%); 
+}
+
+/* Social Container */
+.social-container {
+    margin: 20px 0;
+}
+
+.social-container a {
+    height: 40px;
+    width: 40px;
+    margin: 0 5px; 
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-container a:hover, .social-container a:focus {
+    background-color: #ff4b2b;
+    color: #fff;
+    border-color: #ff4b2b;
+}
+
+/* Messages Styling */
+.messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
+
+.messages li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.messages li.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.messages li.success {
+    background-color: #d4edda;
+    color: #155724;
+}

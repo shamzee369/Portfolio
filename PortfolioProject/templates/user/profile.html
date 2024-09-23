@@ -1,0 +1,31 @@
+{% extends 'base.html' %}<!-- templates/user/profile.html -->
+{% load static %}  <!-- Load static for linking to the CSS file -->
+  <!-- This includes the base template with the navbar -->
+
+{% block content %}
+  <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">  <!-- Link the CSS file -->
+  
+  <div class="container mt-5">
+    <h2 class="profile-title">{{ request.user.username }}'s Profile</h2>
+    <div class="profile-details">
+      
+      {% if profile_image %}
+        <img src="{{ profile_image.url }}" alt="Profile Image" class="profile-img">
+      {% else %}
+        <p>No profile image available.</p>
+      {% endif %}
+      
+      <p><strong>Bio:</strong> {{ bio }}</p>
+      <p><strong>Skills:</strong> {{ skills }}</p>
+      <p><strong>Contact:</strong> {{ contact }}</p>
+      
+      <div class="button-group">
+        <a href="{% url 'portfolio:portfolio' %}" class="btn btn-warning">Add Project</a>
+        <a href="{% url 'portfolio:wrkexp' %}" class="btn btn-success">Add Work Experience</a>
+        <a href="{% url 'portfolio:portedu' %}" class="btn btn-danger">Add Education</a>
+        <a href="{% url 'portfolio:certifi' %}" class="btn btn-secondary">Add Certifications</a>
+      </div>
+      
+    </div>
+  </div>
+{% endblock %}

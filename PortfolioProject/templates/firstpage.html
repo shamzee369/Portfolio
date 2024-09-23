@@ -1,0 +1,107 @@
+<!-- firstpage.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block head %}
+    <link href="{% static 'assets/css/firstpage.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<h1 style=" text-align: center; color: rgb(10, 68, 68); text-shadow: 20px; text-decoration: dashed;">Welcome To Portfolio</h1>
+    <div class="firstpage-container" id="main">
+        <!-- Sign-In Form -->
+        <div class="sign-in">
+            <form action="{% url 'userprofile:login' %}" method="post">
+                {% csrf_token %}
+                <h1>Sign-In</h1>
+                
+                <!-- Display Messages -->
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <div class="social-container">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p>Use your account</p>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Enter password" required>
+                <button type="submit">Sign-In</button>
+            </form>
+        </div>
+        
+        <!-- Sign-Up Form -->
+        <div class="sign-up">
+            <form action="{% url 'userprofile:create' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <div class="social-container">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p>Or Use Your Email For Registration</p>
+                <input type="text" name="username" placeholder="Username" value="{{ username }}" required>
+                <input type="email" name="email" placeholder="Enter email" value="{{ email }}" required>
+                <input type="password" name="password1" placeholder="Enter password" required>
+                <input type="password" name="password2" placeholder="Confirm password" required>
+                
+                <!-- Additional UserProfile Fields -->
+                <textarea name="bio" placeholder="Bio"></textarea>
+                <input type="text" name="skills" placeholder="Skills">
+                <input type="text" name="contact" placeholder="Contact">
+                <input type="file" name="profile_image" accept="image/*">
+                
+                <button type="submit">Sign-Up</button>
+            </form>
+        </div>
+        
+        <!-- Overlay Container -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-right">
+                    <h1>Hello, Friend</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript for Overlay Toggle -->
+    <script type="text/javascript">
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const main = document.getElementById('main');
+
+        signUpButton.addEventListener('click', () => { 
+            main.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => { 
+            main.classList.remove("right-panel-active");
+        });
+    </script>
+{% endblock %}
